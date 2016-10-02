@@ -173,7 +173,6 @@ object DMConexao: TDMConexao
     Top = 120
   end
   object SQLTable_tbfornecedores: TSQLTable
-    Active = True
     MaxBlobSize = -1
     SQLConnection = SQLConnection1
     TableName = 'tb_fornecedores'
@@ -396,7 +395,6 @@ object DMConexao: TDMConexao
     Top = 528
   end
   object SQLDataSet_master: TSQLDataSet
-    Active = True
     CommandText = 'select codigo_cli, nome_cli from `tb_clientes`'
     DataSource = DataSource_master
     MaxBlobSize = -1
@@ -415,7 +413,6 @@ object DMConexao: TDMConexao
     end
   end
   object SQLDataSet_detail: TSQLDataSet
-    Active = True
     CommandText = 'select * from tb_codigos'#13#10'where codigo_cli =:codigo_cli'
     DataSource = DataSource_detail
     MaxBlobSize = -1
@@ -635,7 +632,6 @@ object DMConexao: TDMConexao
     Top = 312
   end
   object SQLDataSet_tbcomissoes: TSQLDataSet
-    Active = True
     CommandText = 
       'select * from `tb_comissoes`'#13#10'where pedido_pdd =:pedido_pdd and ' +
       'codigo_for =:codigo_for'
@@ -711,7 +707,6 @@ object DMConexao: TDMConexao
     Top = 264
   end
   object SQLDataSet_tbpedidos: TSQLDataSet
-    Active = True
     CommandText = 'select * from `tb_pedidos`'
     DataSource = DataSource_tbpedidos_master
     MaxBlobSize = -1
@@ -810,7 +805,6 @@ object DMConexao: TDMConexao
     Top = 384
   end
   object SQLQuery_comissoes: TSQLQuery
-    Active = True
     DataSource = DataSource_comissoes
     MaxBlobSize = -1
     Params = <
