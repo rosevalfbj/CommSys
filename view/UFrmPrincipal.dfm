@@ -14,6 +14,19 @@ object FrmPrincipal: TFrmPrincipal
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
+  object Label1: TLabel
+    Left = 304
+    Top = 120
+    Width = 151
+    Height = 42
+    Caption = 'CommSys'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -35
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
   object Panel1: TPanel
     Left = 8
     Top = 8
