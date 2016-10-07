@@ -92,6 +92,4 @@ begin
   calcComissao_sqlt:=val;
 end;
 
-
-
 end.

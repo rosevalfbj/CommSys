@@ -147,7 +147,7 @@ object FrmPedidos: TFrmPedidos
     Top = 269
     Width = 240
     Height = 25
-    DataSource = DataSource_tbpedidos
+    DataSource = DMConexao.DataSource_master
     TabOrder = 4
   end
   object DBEdit2: TDBEdit

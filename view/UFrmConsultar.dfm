@@ -151,7 +151,7 @@ object FrmConsultar: TFrmConsultar
       Caption = 'Cliente'
     end
     object Label3: TLabel
-      Left = 440
+      Left = 368
       Top = 5
       Width = 68
       Height = 13
@@ -159,27 +159,41 @@ object FrmConsultar: TFrmConsultar
     end
     object Label6: TLabel
       Left = 608
-      Top = 51
+      Top = 5
       Width = 46
       Height = 13
       Caption = 'Vendedor'
     end
     object Label7: TLabel
-      Left = 442
+      Left = 608
       Top = 51
       Width = 66
       Height = 13
       Caption = 'Status Pedido'
     end
     object Label8: TLabel
-      Left = 280
+      Left = 440
       Top = 51
       Width = 33
       Height = 13
       Caption = 'Cidade'
     end
+    object Label9: TLabel
+      Left = 312
+      Top = 51
+      Width = 17
+      Height = 13
+      Caption = 'At'#233
+    end
+    object Label10: TLabel
+      Left = 184
+      Top = 51
+      Width = 13
+      Height = 13
+      Caption = 'De'
+    end
     object btnFiltrar: TBitBtn
-      Left = 8
+      Left = 16
       Top = 68
       Width = 75
       Height = 25
@@ -197,29 +211,29 @@ object FrmConsultar: TFrmConsultar
     object ComboBox1: TComboBox
       Left = 97
       Top = 24
-      Width = 328
+      Width = 256
       Height = 21
       TabOrder = 2
       Text = '%'
     end
     object ComboBox2: TComboBox
-      Left = 440
+      Left = 368
       Top = 24
-      Width = 313
+      Width = 217
       Height = 21
       TabOrder = 3
       Text = '%'
     end
     object ComboBox3: TComboBox
       Left = 608
-      Top = 70
+      Top = 24
       Width = 145
       Height = 21
       TabOrder = 4
       Text = '%'
     end
     object Combobox4: TComboBox
-      Left = 440
+      Left = 608
       Top = 70
       Width = 145
       Height = 21
@@ -232,12 +246,30 @@ object FrmConsultar: TFrmConsultar
         'Pendente')
     end
     object Combobox5: TComboBox
-      Left = 280
+      Left = 440
       Top = 70
       Width = 145
       Height = 21
       TabOrder = 6
       Text = '%'
+    end
+    object dtde: TDateTimePicker
+      Left = 184
+      Top = 70
+      Width = 106
+      Height = 21
+      Date = 42649.957257719910000000
+      Time = 42649.957257719910000000
+      TabOrder = 7
+    end
+    object dtate: TDateTimePicker
+      Left = 312
+      Top = 70
+      Width = 106
+      Height = 21
+      Date = 42649.958064872680000000
+      Time = 42649.958064872680000000
+      TabOrder = 8
     end
   end
   object DataSource_comissoes: TDataSource

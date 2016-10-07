@@ -173,6 +173,7 @@ object DMConexao: TDMConexao
     Top = 120
   end
   object SQLTable_tbfornecedores: TSQLTable
+    Active = True
     MaxBlobSize = -1
     SQLConnection = SQLConnection1
     TableName = 'tb_fornecedores'
@@ -794,6 +795,10 @@ object DMConexao: TDMConexao
       FieldName = 'status_pdd'
       Required = True
     end
+    object ClientDataSet_comissoesdatavenda_pdd: TDateField
+      FieldName = 'datavenda_pdd'
+      Required = True
+    end
   end
   object DataSetProvider_comissoes: TDataSetProvider
     DataSet = SQLQuery_comissoes
@@ -807,17 +812,12 @@ object DMConexao: TDMConexao
   object SQLQuery_comissoes: TSQLQuery
     DataSource = DataSource_comissoes
     MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftInteger
-        Name = 'Pedido_pdd'
-        ParamType = ptInput
-      end>
+    Params = <>
     SQL.Strings = (
       
         'select distinct tc.Pedido_pdd, tc.Parcelapaga_com, tcli.Nome_cli' +
         ', tf.Nome_for,tp.status_pdd, tc.Valorcomissao_com, tc.Valorpagto' +
-        '_com'
+        '_com, tp.datavenda_pdd'
       
         'from tb_comissoes tc, tb_pedidos tp, tb_fornecedores tf, tb_clie' +
         'ntes tcli'
@@ -858,6 +858,10 @@ object DMConexao: TDMConexao
     end
     object SQLQuery_comissoesstatus_pdd: TStringField
       FieldName = 'status_pdd'
+      Required = True
+    end
+    object SQLQuery_comissoesdatavenda_pdd: TDateField
+      FieldName = 'datavenda_pdd'
       Required = True
     end
   end

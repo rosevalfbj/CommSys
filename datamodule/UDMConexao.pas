@@ -153,6 +153,8 @@ type
     ClientDataSet_tbpedidosnome_for: TStringField;
     SQLQuery_comissoesstatus_pdd: TStringField;
     ClientDataSet_comissoesstatus_pdd: TStringField;
+    SQLQuery_comissoesdatavenda_pdd: TDateField;
+    ClientDataSet_comissoesdatavenda_pdd: TDateField;
     procedure DataModuleCreate(Sender: TObject);
     procedure ClientDataSet_tbcidadesAfterCancel(DataSet: TDataSet);
     procedure ClientDataSet_tbcidadesAfterDelete(DataSet: TDataSet);
