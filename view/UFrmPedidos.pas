@@ -38,6 +38,10 @@ type
     procedure SpeedButton2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
+    procedure DBEdit1KeyPress(Sender: TObject; var Key: Char);
+    procedure DBEdit3KeyPress(Sender: TObject; var Key: Char);
+    function CheckFields(Dataset: TDataset): Boolean;
   private
     { Private declarations }
   public
@@ -63,6 +67,24 @@ end;
 
 end;
 
+procedure TFrmPedidos.DBEdit1KeyPress(Sender: TObject; var Key: Char);
+begin
+    if not (key in ['0'..'9',#8]) then
+     key:=#0;
+end;
+
+procedure TFrmPedidos.DBEdit3KeyPress(Sender: TObject; var Key: Char);
+begin
+    if not (key in ['0'..'9',#8]) then
+     key:=#0;
+end;
+
+procedure TFrmPedidos.Edit1KeyPress(Sender: TObject; var Key: Char);
+begin
+    if not (key in ['0'..'9',#8]) then
+     key:=#0;
+end;
+
 procedure TFrmPedidos.FormCreate(Sender: TObject);
 begin
 dbedit2.Field.EditMask:='!99/99/0000;1;_';
@@ -73,6 +95,23 @@ begin
   DMConexao.SQLDataSet_tbpedidos.Close;
   DMConexao.SQLDataSet_tbpedidos.open;
   close;
+end;
+
+function TfrmPedidos.CheckFields(Dataset: TDataset): Boolean;
+var i: Integer;
+begin
+  i := 0;
+  Result := True;
+  for i := 0 to Dataset.Fields.Count - 1 do
+    begin
+      if (Dataset.Fields[i].Required) and (Dataset.Fields[i].IsNull) then
+      begin
+        MessageDlg('O campo ' + Dataset.Fields[i].DisplayLabel + ' não foi informado!', mtWarning, [mbOk], 0);
+        Dataset.Fields[i].FocusControl;
+        Result := False;
+        Break;
+      end;
+    end;
 end;
 
 end.

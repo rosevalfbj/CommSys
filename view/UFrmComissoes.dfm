@@ -205,6 +205,7 @@ object FrmComissoes: TFrmComissoes
       DataField = 'Notafiscal_com'
       DataSource = DataSource_tbcomissoes_detail
       TabOrder = 0
+      OnKeyPress = DBEdit1KeyPress
     end
     object DBEdit2: TDBEdit
       Left = 96
@@ -259,6 +260,7 @@ object FrmComissoes: TFrmComissoes
       DataField = 'Parcelapaga_com'
       DataSource = DataSource_tbcomissoes_detail
       TabOrder = 6
+      OnKeyPress = DBEdit7KeyPress
     end
     object DBEdit8: TDBEdit
       Left = 328
@@ -268,6 +270,7 @@ object FrmComissoes: TFrmComissoes
       DataField = 'Observacao_com'
       DataSource = DataSource_tbcomissoes_detail
       TabOrder = 7
+      OnKeyPress = DBEdit8KeyPress
     end
     object DBComboBox1: TDBComboBox
       Left = 190

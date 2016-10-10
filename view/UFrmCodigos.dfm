@@ -59,6 +59,7 @@ object FrmCodigos: TFrmCodigos
     DataField = 'Codigo_cdg'
     DataSource = DataSource_detail
     TabOrder = 0
+    OnKeyPress = DBEdit3KeyPress
   end
   object DBGrid1: TDBGrid
     Left = 8

@@ -71,6 +71,7 @@ object DMConexao: TDMConexao
     ProviderName = 'DataSetProvider_tbcidades'
     AfterInsert = ClientDataSet_tbcidadesAfterInsert
     AfterEdit = ClientDataSet_tbcidadesAfterEdit
+    BeforePost = ClientDataSet_tbcidadesBeforePost
     AfterPost = ClientDataSet_tbcidadesAfterPost
     AfterCancel = ClientDataSet_tbcidadesAfterCancel
     AfterDelete = ClientDataSet_tbcidadesAfterDelete
@@ -120,6 +121,7 @@ object DMConexao: TDMConexao
     ProviderName = 'DataSetProvider_tbvendedores'
     AfterInsert = ClientDataSet_tbvendedoresAfterInsert
     AfterEdit = ClientDataSet_tbvendedoresAfterEdit
+    BeforePost = ClientDataSet_tbvendedoresBeforePost
     AfterPost = ClientDataSet_tbvendedoresAfterPost
     AfterCancel = ClientDataSet_tbvendedoresAfterCancel
     AfterDelete = ClientDataSet_tbvendedoresAfterDelete
@@ -148,6 +150,7 @@ object DMConexao: TDMConexao
     ProviderName = 'DataSetProvider_tbfornecedores'
     AfterInsert = ClientDataSet_tbfornecedoresAfterInsert
     AfterEdit = ClientDataSet_tbfornecedoresAfterEdit
+    BeforePost = ClientDataSet_tbfornecedoresBeforePost
     AfterPost = ClientDataSet_tbfornecedoresAfterPost
     AfterCancel = ClientDataSet_tbfornecedoresAfterCancel
     AfterDelete = ClientDataSet_tbfornecedoresAfterDelete
@@ -199,6 +202,7 @@ object DMConexao: TDMConexao
     ProviderName = 'DataSetProvider_tbclientes'
     AfterInsert = ClientDataSet_tbclientesAfterInsert
     AfterEdit = ClientDataSet_tbclientesAfterEdit
+    BeforePost = ClientDataSet_tbclientesBeforePost
     AfterPost = ClientDataSet_tbclientesAfterPost
     AfterCancel = ClientDataSet_tbclientesAfterCancel
     AfterDelete = ClientDataSet_tbclientesAfterDelete
@@ -235,6 +239,7 @@ object DMConexao: TDMConexao
     end
     object ClientDataSet_tbclientesCodigo_cid: TIntegerField
       FieldName = 'Codigo_cid'
+      Required = True
     end
   end
   object DataSetProvider_tbclientes: TDataSetProvider
@@ -355,6 +360,7 @@ object DMConexao: TDMConexao
     IndexFieldNames = 'Codigo_cli'
     Params = <>
     AfterEdit = ClientDataSet_detailAfterEdit
+    BeforePost = ClientDataSet_detailBeforePost
     AfterPost = ClientDataSet_detailAfterPost
     AfterCancel = ClientDataSet_detailAfterCancel
     AfterDelete = ClientDataSet_detailAfterDelete
@@ -501,6 +507,7 @@ object DMConexao: TDMConexao
     Params = <>
     ProviderName = 'DataSetProvider_tbpedidos'
     AfterEdit = ClientDataSet_tbpedidosAfterEdit
+    BeforePost = ClientDataSet_tbpedidosBeforePost
     AfterPost = ClientDataSet_tbpedidosAfterPost
     AfterCancel = ClientDataSet_tbpedidosAfterCancel
     AfterDelete = ClientDataSet_tbpedidosAfterDelete
@@ -521,6 +528,7 @@ object DMConexao: TDMConexao
     end
     object ClientDataSet_tbpedidosvalor_pdd: TFMTBCDField
       FieldName = 'valor_pdd'
+      Required = True
       DisplayFormat = 'R$ #,##0.00;1;_'
       Precision = 10
       Size = 2
@@ -551,6 +559,7 @@ object DMConexao: TDMConexao
       LookupKeyFields = 'Codigo_cli'
       LookupResultField = 'Nome_cli'
       KeyFields = 'Codigo_cli'
+      Required = True
       Size = 60
       Lookup = True
     end
@@ -561,6 +570,7 @@ object DMConexao: TDMConexao
       LookupKeyFields = 'Codigo_for'
       LookupResultField = 'Nome_for'
       KeyFields = 'Codigo_for'
+      Required = True
       Size = 60
       Lookup = True
     end
@@ -571,6 +581,7 @@ object DMConexao: TDMConexao
     DataSetField = ClientDataSet_tbpedidosSQLDataSet_tbcomissoes
     Params = <>
     AfterEdit = ClientDataSet_tbcomissoesAfterEdit
+    BeforePost = ClientDataSet_tbcomissoesBeforePost
     AfterPost = ClientDataSet_tbcomissoesAfterPost
     AfterCancel = ClientDataSet_tbcomissoesAfterCancel
     AfterDelete = ClientDataSet_tbcomissoesAfterDelete
@@ -597,6 +608,7 @@ object DMConexao: TDMConexao
     end
     object ClientDataSet_tbcomissoesvalorpagto_com: TFMTBCDField
       FieldName = 'valorpagto_com'
+      Required = True
       DisplayFormat = 'R$ #,##0.00;0;_'
       currency = True
       Precision = 10
@@ -781,12 +793,14 @@ object DMConexao: TDMConexao
     end
     object ClientDataSet_comissoesValorcomissao_com: TFMTBCDField
       FieldName = 'Valorcomissao_com'
+      Required = True
       DisplayFormat = 'R$ #,##0.00;0;_'
       Precision = 10
       Size = 2
     end
     object ClientDataSet_comissoesValorpagto_com: TFMTBCDField
       FieldName = 'Valorpagto_com'
+      Required = True
       DisplayFormat = 'R$ #,##0.00;0;_'
       Precision = 10
       Size = 2
@@ -812,7 +826,12 @@ object DMConexao: TDMConexao
   object SQLQuery_comissoes: TSQLQuery
     DataSource = DataSource_comissoes
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'Pedido_pdd'
+        ParamType = ptInput
+      end>
     SQL.Strings = (
       
         'select distinct tc.Pedido_pdd, tc.Parcelapaga_com, tcli.Nome_cli' +

@@ -58,6 +58,7 @@ object FrmCidades: TFrmCidades
     DataField = 'Nome_cid'
     DataSource = DataSource1
     TabOrder = 0
+    OnKeyPress = DBEdit2KeyPress
   end
   object DBComboBox1: TDBComboBox
     Left = 312

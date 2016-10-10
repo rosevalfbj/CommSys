@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,
   Data.DB, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Mask, Data.FMTBcd, Datasnap.Provider,
-  Datasnap.DBClient, Data.SqlExpr, Vcl.Buttons, Vcl.ComCtrls;
+  Datasnap.DBClient, Data.SqlExpr, Vcl.Buttons, Vcl.ComCtrls, System.DateUtils;
 
 type
   TFrmConsultar = class(TForm)
@@ -39,6 +39,7 @@ type
     procedure btnFiltrarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -60,18 +61,31 @@ begin
 
   dtde.Format:='yyyy/MM/dd';
   dtate.Format:='yyyy/MM/dd';
-  DMConexao.SQLQuery_comissoes.SQL.Add('select distinct tc.Pedido_pdd, tc.Parcelapaga_com, tcli.Nome_cli, tcid.nome_cid, tp.status_pdd, tf.Nome_for, tc.Valorcomissao_com, tc.Valorpagto_com, tp.datavenda_pdd ');
-  DMConexao.SQLQuery_comissoes.SQL.Add('from tb_comissoes tc, tb_pedidos tp, tb_fornecedores tf, tb_clientes tcli, tb_cidades tcid, tb_vendedores tvd where ');
-  DMConexao.SQLQuery_comissoes.SQL.Add('tc.Codigo_for = tf.Codigo_for and tp.Pedido_pdd = tc.Pedido_pdd and tp.Codigo_cli = tcli.codigo_cli and tcli.codigo_cid = tcid.codigo_cid and tvd.codigo_vdd = tp.codigo_vdd and ');
-  DMConexao.SQLQuery_comissoes.SQL.Add('tcli.nome_cli like '+quotedstr(combobox1.Text)+' and tf.nome_for like '+quotedstr(combobox2.text)+ ' and tp.status_pdd like '+quotedstr(combobox4.Text)+' and tcid.nome_cid like '+quotedstr(combobox5.Text)+' and tvd.nome_vdd like '+quotedstr(combobox3.Text));
-  DMConexao.SQLQuery_comissoes.SQL.Add(' and tp.datavenda_pdd between '+quotedstr(FormatDateTime('YYYY/MM/DD',dtde.Date))+' and '+quotedstr(FormatDateTime('YYYY/MM/DD',dtate.Date)));
 
-  if edit1.Text <> '' then
-    DMConexao.sqlquery_comissoes.SQL.Add(' and tc.pedido_pdd='+edit1.text);
+  with DMConexao.SQLQuery_comissoes.SQL do
+    begin
+      Add('select distinct tc.Pedido_pdd, tc.Parcelapaga_com, tcli.Nome_cli, tcid.nome_cid, tp.status_pdd, tf.Nome_for, tc.Valorcomissao_com, tc.Valorpagto_com, tp.datavenda_pdd ');
+      Add('from tb_comissoes tc, tb_pedidos tp, tb_fornecedores tf, tb_clientes tcli, tb_cidades tcid, tb_vendedores tvd where ');
+      Add('tc.Codigo_for = tf.Codigo_for and tp.Pedido_pdd = tc.Pedido_pdd and tp.Codigo_cli = tcli.codigo_cli and tcli.codigo_cid = tcid.codigo_cid and tvd.codigo_vdd = tp.codigo_vdd ');
 
-  DMConexao.SQLQuery_comissoes.SQL.Add(' order by tc.pedido_pdd, tc.codigo_for, tc.parcelapaga_com');
+      if combobox1.Text <> '' then
+        Add(' and tcli.nome_cli like '+quotedstr(combobox1.Text));
+      if combobox2.Text <> '' then
+        Add(' and tf.nome_for like '+quotedstr(combobox2.Text));
+      if combobox4.Text <> '' then
+        Add(' and tp.status_pdd like '+quotedstr(combobox4.Text));
+      if combobox5.Text <> '' then
+        Add(' and tcid.nome_cid like '+quotedstr(combobox5.Text));
+      if combobox3.Text <> '' then
+        Add(' and tvd.nome_vdd like '+quotedstr(combobox3.Text));
+      if edit1.Text <> '' then
+        Add(' and tc.pedido_pdd='+edit1.text);
+      if (datetostr(dtde.Date) <> '') and (datetostr(dtate.Date) <> '') then
+        Add(' and tp.datavenda_pdd between '+quotedstr(FormatDateTime('YYYY/MM/DD',dtde.Date))+' and '+quotedstr(FormatDateTime('YYYY/MM/DD',dtate.Date)));
+      Add(' order by tc.pedido_pdd, tc.codigo_for, tc.parcelapaga_com');
+    end;
 
-  showmessage(DMConexao.SQLQuery_comissoes.SQL.Text);
+  //showmessage(DMConexao.SQLQuery_comissoes.SQL.Text);
   DMConexao.SQLQuery_comissoes.Open;
   DMConexao.ClientDataSet_comissoes.close;
   DMConexao.ClientDataSet_comissoes.Open;
@@ -80,6 +94,12 @@ begin
   edit3.Text:=FormatCurr('R$ ,0.00',calcComissao_sqlq(DMConexao.SQLQuery_comissoes,DMConexao.SQLQuery_comissoesValorPagto_com));
   dtde.Format:='dd/MM/yyyy';
   dtate.Format:='dd/MM/yyyy';
+end;
+
+procedure TFrmConsultar.Edit1KeyPress(Sender: TObject; var Key: Char);
+begin
+  if not (key in ['0'..'9',#8]) then
+     key:=#0;
 end;
 
 procedure TFrmConsultar.FormCreate(Sender: TObject);
@@ -94,11 +114,6 @@ begin
   DMConexao.ClientDataSet_comissoes.Close;
   DMConexao.ClientDataSet_comissoes.Open;
 
-  combobox1.Items.Add('%');
-  combobox2.Items.Add('%');
-  combobox3.Items.Add('%');
-  combobox5.Items.Add('%');
-
   populaCombobox(DMConexao.SQLTable_tbclientes,DMConexao.SQLTable_tbclientesNome_cli,combobox1);
   populaCombobox(DMConexao.SQLTable_tbfornecedores,DMConexao.SQLTable_tbfornecedoresNome_for,combobox2);
   populaCombobox(DMConexao.SQLTable_tbvendedores,DMConexao.SQLTable_tbvendedoresNome_vdd,combobox3);
@@ -106,6 +121,9 @@ begin
 
   edit2.Text:=FormatCurr('R$ ,0.00',calcComissao_sqlq(DMConexao.SQLQuery_comissoes,DMConexao.SQLQuery_comissoesValorComissao_com));
   edit3.Text:=FormatCurr('R$ ,0.00',calcComissao_sqlq(DMConexao.SQLQuery_comissoes,DMConexao.SQLQuery_comissoesValorPagto_com));
+
+  dtde.Date := now();
+  dtate.Date := now();
 end;
 
 procedure TFrmConsultar.SpeedButton2Click(Sender: TObject);

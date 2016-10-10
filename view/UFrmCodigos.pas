@@ -24,6 +24,8 @@ type
     DataSource_detail: TDataSource;
     procedure SpeedButton2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure DBEdit3KeyPress(Sender: TObject; var Key: Char);
+    function CheckFields(Dataset: TDataset): Boolean;
   private
     { Private declarations }
   public
@@ -37,6 +39,12 @@ implementation
    uses UDMConexao;
 
 {$R *.dfm}
+
+procedure TFrmCodigos.DBEdit3KeyPress(Sender: TObject; var Key: Char);
+begin
+    if not (key in ['0'..'9',#8]) then
+     key:=#0;
+end;
 
 procedure TFrmCodigos.FormCreate(Sender: TObject);
 begin
@@ -52,6 +60,23 @@ begin
   DMConexao.SQLDataSet_tbcodigos.Close;
   DMConexao.SQLDataSet_tbcodigos.Open;
   close;
+end;
+
+function TfrmCodigos.CheckFields(Dataset: TDataset): Boolean;
+var i: Integer;
+begin
+  i := 0;
+  Result := True;
+  for i := 0 to Dataset.Fields.Count - 1 do
+    begin
+      if (Dataset.Fields[i].Required) and (Dataset.Fields[i].IsNull) then
+      begin
+        MessageDlg('O campo ' + Dataset.Fields[i].DisplayLabel + ' não foi informado!', mtWarning, [mbOk], 0);
+        Dataset.Fields[i].FocusControl;
+        Result := False;
+        Break;
+      end;
+    end;
 end;
 
 end.

@@ -111,6 +111,7 @@ object FrmPedidos: TFrmPedidos
     DataField = 'Pedido_pdd'
     DataSource = DataSource_tbpedidos
     TabOrder = 0
+    OnKeyPress = DBEdit1KeyPress
   end
   object DBEdit3: TDBEdit
     Left = 128
@@ -120,6 +121,7 @@ object FrmPedidos: TFrmPedidos
     DataField = 'QtdParcelas_pdd'
     DataSource = DataSource_tbpedidos
     TabOrder = 1
+    OnKeyPress = DBEdit3KeyPress
   end
   object DBEdit4: TDBEdit
     Left = 232
@@ -144,10 +146,10 @@ object FrmPedidos: TFrmPedidos
   end
   object DBNavigator1: TDBNavigator
     Left = 8
-    Top = 269
+    Top = 277
     Width = 240
     Height = 25
-    DataSource = DMConexao.DataSource_master
+    DataSource = DataSource_tbpedidos
     TabOrder = 4
   end
   object DBEdit2: TDBEdit
@@ -221,11 +223,12 @@ object FrmPedidos: TFrmPedidos
     Width = 81
     Height = 21
     TabOrder = 11
+    OnKeyPress = Edit1KeyPress
   end
   object DataSource_tbpedidos: TDataSource
     DataSet = DMConexao.ClientDataSet_tbpedidos
-    Left = 40
-    Top = 40
+    Left = 264
+    Top = 32
   end
   object DataSource_tbvendedores: TDataSource
     DataSet = DMConexao.ClientDataSet_tbvendedores

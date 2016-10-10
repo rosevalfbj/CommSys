@@ -59,6 +59,7 @@ object FrmRepresentadas: TFrmRepresentadas
     DataField = 'Nome_for'
     DataSource = DataSource1
     TabOrder = 0
+    OnKeyPress = DBEdit1KeyPress
   end
   object DBEdit2: TDBEdit
     Left = 8
