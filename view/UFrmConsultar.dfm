@@ -207,6 +207,7 @@ object FrmConsultar: TFrmConsultar
       Width = 75
       Height = 21
       TabOrder = 1
+      OnKeyPress = Edit1KeyPress
     end
     object ComboBox1: TComboBox
       Left = 97
@@ -214,7 +215,6 @@ object FrmConsultar: TFrmConsultar
       Width = 256
       Height = 21
       TabOrder = 2
-      Text = '%'
     end
     object ComboBox2: TComboBox
       Left = 368
@@ -222,7 +222,6 @@ object FrmConsultar: TFrmConsultar
       Width = 217
       Height = 21
       TabOrder = 3
-      Text = '%'
     end
     object ComboBox3: TComboBox
       Left = 608
@@ -230,7 +229,6 @@ object FrmConsultar: TFrmConsultar
       Width = 145
       Height = 21
       TabOrder = 4
-      Text = '%'
     end
     object Combobox4: TComboBox
       Left = 608
@@ -238,9 +236,7 @@ object FrmConsultar: TFrmConsultar
       Width = 145
       Height = 21
       TabOrder = 5
-      Text = '%'
       Items.Strings = (
-        '%'
         'Aberto'
         'Liquidado'
         'Pendente')
@@ -251,15 +247,14 @@ object FrmConsultar: TFrmConsultar
       Width = 145
       Height = 21
       TabOrder = 6
-      Text = '%'
     end
     object dtde: TDateTimePicker
       Left = 184
       Top = 70
       Width = 106
       Height = 21
-      Date = 42649.957257719910000000
-      Time = 42649.957257719910000000
+      Date = 0.957257719906920100
+      Time = 0.957257719906920100
       TabOrder = 7
     end
     object dtate: TDateTimePicker
@@ -267,8 +262,8 @@ object FrmConsultar: TFrmConsultar
       Top = 70
       Width = 106
       Height = 21
-      Date = 42649.958064872680000000
-      Time = 42649.958064872680000000
+      Date = 42652.958064872680000000
+      Time = 42652.958064872680000000
       TabOrder = 8
     end
   end

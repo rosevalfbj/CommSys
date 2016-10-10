@@ -51,6 +51,7 @@ object FrmVendedores: TFrmVendedores
     DataField = 'Nome_vdd'
     DataSource = DataSource1
     TabOrder = 0
+    OnKeyPress = DBEdit2KeyPress
   end
   object DBGrid1: TDBGrid
     Left = 8

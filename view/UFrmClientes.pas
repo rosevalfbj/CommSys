@@ -33,6 +33,12 @@ type
     SpeedButton2: TSpeedButton;
     DataSource_tbcidades: TDataSource;
     procedure SpeedButton2Click(Sender: TObject);
+    procedure DBEdit1KeyPress(Sender: TObject; var Key: Char);
+    procedure DBEdit2KeyPress(Sender: TObject; var Key: Char);
+    procedure DBEdit3KeyPress(Sender: TObject; var Key: Char);
+    procedure DBEdit6KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
+    function CheckFields(Dataset: TDataset): Boolean;
   private
     { Private declarations }
   public
@@ -47,11 +53,53 @@ implementation
 
 {$R *.dfm}
 
+procedure TFrmClientes.DBEdit1KeyPress(Sender: TObject; var Key: Char);
+begin
+  Key := AnsiUpperCase( Key )[1];
+end;
+
+procedure TFrmClientes.DBEdit2KeyPress(Sender: TObject; var Key: Char);
+begin
+  Key := AnsiUpperCase( Key )[1];
+end;
+
+procedure TFrmClientes.DBEdit3KeyPress(Sender: TObject; var Key: Char);
+begin
+  Key := AnsiUpperCase( Key )[1];
+end;
+
+procedure TFrmClientes.DBEdit6KeyPress(Sender: TObject; var Key: Char);
+begin
+  Key := AnsiLowerCase( Key )[1];
+end;
+
+procedure TFrmClientes.Edit1KeyPress(Sender: TObject; var Key: Char);
+begin
+  Key := AnsiUpperCase( Key )[1];
+end;
+
 procedure TFrmClientes.SpeedButton2Click(Sender: TObject);
 begin
   DMConexao.SQLTable_tbcidades.Close;
   DMConexao.SQLTable_tbcidades.Open;
   close;
+end;
+
+function TfrmClientes.CheckFields(Dataset: TDataset): Boolean;
+var i: Integer;
+begin
+  i := 0;
+  Result := True;
+  for i := 0 to Dataset.Fields.Count - 1 do
+    begin
+      if (Dataset.Fields[i].Required) and (Dataset.Fields[i].IsNull) then
+      begin
+        MessageDlg('O campo ' + Dataset.Fields[i].DisplayLabel + ' não foi informado!', mtWarning, [mbOk], 0);
+        Dataset.Fields[i].FocusControl;
+        Result := False;
+        Break;
+      end;
+    end;
 end;
 
 end.

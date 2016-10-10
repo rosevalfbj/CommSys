@@ -202,6 +202,13 @@ type
     procedure ClientDataSet_tbcomissoesAfterInsert(DataSet: TDataSet);
     procedure ClientDataSet_tbcomissoesAfterPost(DataSet: TDataSet);
     procedure ClientDataSet_tbcomissoesAfterRefresh(DataSet: TDataSet);
+    procedure ClientDataSet_tbpedidosBeforePost(DataSet: TDataSet);
+    procedure ClientDataSet_tbcomissoesBeforePost(DataSet: TDataSet);
+    procedure ClientDataSet_tbfornecedoresBeforePost(DataSet: TDataSet);
+    procedure ClientDataSet_tbvendedoresBeforePost(DataSet: TDataSet);
+    procedure ClientDataSet_tbclientesBeforePost(DataSet: TDataSet);
+    procedure ClientDataSet_tbcidadesBeforePost(DataSet: TDataSet);
+    procedure ClientDataSet_detailBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -212,7 +219,7 @@ var
   DMConexao: TDMConexao;
 
 implementation
-   Uses UFuncoes, UFrmCidades;
+   Uses UFuncoes, UFrmCidades, UFrmPedidos, UFrmComissoes, UFrmRepresentadas, UFrmVendedores, UFrmClientes, UFrmCodigos;
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
@@ -263,6 +270,14 @@ begin
     ClientDataSet_detail.Cancel;
   end;
 
+end;
+
+procedure TDMConexao.ClientDataSet_detailBeforePost(DataSet: TDataSet);
+begin
+if (FrmCodigos.CheckFields(Dataset) = False) then
+  begin
+    Abort;
+  end;
 end;
 
 procedure TDMConexao.ClientDataSet_tbcidadesAfterCancel(DataSet: TDataSet);
@@ -320,6 +335,14 @@ begin
 
 end;
 
+procedure TDMConexao.ClientDataSet_tbcidadesBeforePost(DataSet: TDataSet);
+begin
+if (FrmVendedores.CheckFields(Dataset) = False) then
+  begin
+    Abort;
+  end;
+end;
+
 procedure TDMConexao.ClientDataSet_tbclientesAfterCancel(DataSet: TDataSet);
 begin
   try
@@ -368,6 +391,14 @@ begin
     ClientDataSet_tbclientes.Cancel;
   end;
 
+end;
+
+procedure TDMConexao.ClientDataSet_tbclientesBeforePost(DataSet: TDataSet);
+begin
+if (FrmVendedores.CheckFields(Dataset) = False) then
+  begin
+    Abort;
+  end;
 end;
 
 procedure TDMConexao.ClientDataSet_tbcodigosAfterCancel(DataSet: TDataSet);
@@ -491,6 +522,14 @@ begin
 
 end;
 
+procedure TDMConexao.ClientDataSet_tbcomissoesBeforePost(DataSet: TDataSet);
+begin
+if (FrmComissoes.CheckFields(Dataset) = False) then
+  begin
+    Abort;
+  end;
+end;
+
 procedure TDMConexao.ClientDataSet_tbfornecedoresAfterCancel(DataSet: TDataSet);
 begin
   try
@@ -547,6 +586,14 @@ begin
 
 end;
 
+procedure TDMConexao.ClientDataSet_tbfornecedoresBeforePost(DataSet: TDataSet);
+begin
+if (FrmRepresentadas.CheckFields(Dataset) = False) then
+  begin
+    Abort;
+  end;
+end;
+
 procedure TDMConexao.ClientDataSet_tbpedidosAfterCancel(DataSet: TDataSet);
 begin
   try
@@ -595,6 +642,14 @@ begin
     ClientDataSet_tbpedidos.Cancel;
   end;
 
+end;
+
+procedure TDMConexao.ClientDataSet_tbpedidosBeforePost(DataSet: TDataSet);
+begin
+if (FrmPedidos.CheckFields(Dataset) = False) then
+  begin
+    Abort;
+  end;
 end;
 
 procedure TDMConexao.DataModuleCreate(Sender: TObject);
@@ -656,6 +711,14 @@ begin
     ClientDataSet_tbvendedores.Cancel;
   end;
 
+end;
+
+procedure TDMConexao.ClientDataSet_tbvendedoresBeforePost(DataSet: TDataSet);
+begin
+if (FrmVendedores.CheckFields(Dataset) = False) then
+  begin
+    Abort;
+  end;
 end;
 
 procedure TDMConexao.ClientDataSet_tbvendedoresAfterCancel(DataSet: TDataSet);

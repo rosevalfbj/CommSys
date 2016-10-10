@@ -98,6 +98,7 @@ object FrmClientes: TFrmClientes
     DataField = 'Nome_cli'
     DataSource = DataSource1
     TabOrder = 0
+    OnKeyPress = DBEdit1KeyPress
   end
   object DBEdit2: TDBEdit
     Left = 8
@@ -107,6 +108,7 @@ object FrmClientes: TFrmClientes
     DataField = 'Endereco_cli'
     DataSource = DataSource1
     TabOrder = 1
+    OnKeyPress = DBEdit2KeyPress
   end
   object DBEdit3: TDBEdit
     Left = 8
@@ -116,6 +118,7 @@ object FrmClientes: TFrmClientes
     DataField = 'Bairro_cli'
     DataSource = DataSource1
     TabOrder = 2
+    OnKeyPress = DBEdit3KeyPress
   end
   object DBEdit4: TDBEdit
     Left = 8
@@ -143,6 +146,7 @@ object FrmClientes: TFrmClientes
     DataField = 'Email_cli'
     DataSource = DataSource1
     TabOrder = 5
+    OnKeyPress = DBEdit6KeyPress
   end
   object DBLookupComboBox1: TDBLookupComboBox
     Left = 279
@@ -197,7 +201,6 @@ object FrmClientes: TFrmClientes
     Width = 431
     Height = 41
     BorderStyle = bsSingle
-    Enabled = False
     TabOrder = 8
     object SpeedButton1: TSpeedButton
       Left = 343
@@ -220,6 +223,7 @@ object FrmClientes: TFrmClientes
       Width = 289
       Height = 21
       TabOrder = 0
+      OnKeyPress = Edit1KeyPress
     end
   end
   object DBNavigator1: TDBNavigator

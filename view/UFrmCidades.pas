@@ -19,6 +19,8 @@ type
     DataSource1: TDataSource;
     SpeedButton2: TSpeedButton;
     procedure SpeedButton2Click(Sender: TObject);
+    procedure DBEdit2KeyPress(Sender: TObject; var Key: Char);
+    function CheckFields(Dataset: TDataset): Boolean;
 
   private
     { Private declarations }
@@ -36,11 +38,33 @@ implementation
 
 
 
+procedure TFrmCidades.DBEdit2KeyPress(Sender: TObject; var Key: Char);
+begin
+  Key := AnsiUpperCase( Key )[1];
+end;
+
 procedure TFrmCidades.SpeedButton2Click(Sender: TObject);
 begin
   DMConexao.SQLTable_tbcidades.Close;
   DMConexao.SQLTable_tbcidades.Open;
   close;
+end;
+
+function TfrmCidades.CheckFields(Dataset: TDataset): Boolean;
+var i: Integer;
+begin
+  i := 0;
+  Result := True;
+  for i := 0 to Dataset.Fields.Count - 1 do
+    begin
+      if (Dataset.Fields[i].Required) and (Dataset.Fields[i].IsNull) then
+      begin
+        MessageDlg('O campo ' + Dataset.Fields[i].DisplayLabel + ' não foi informado!', mtWarning, [mbOk], 0);
+        Dataset.Fields[i].FocusControl;
+        Result := False;
+        Break;
+      end;
+    end;
 end;
 
 end.
