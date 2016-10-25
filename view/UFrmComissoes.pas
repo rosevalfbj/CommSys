@@ -50,6 +50,7 @@ type
     procedure DBEdit1KeyPress(Sender: TObject; var Key: Char);
     procedure DBEdit7KeyPress(Sender: TObject; var Key: Char);
     function CheckFields(Dataset: TDataset): Boolean;
+    procedure DBEdit5Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -79,11 +80,13 @@ procedure TFrmComissoes.DataSource_tbcomissoes_detailDataChange(Sender: TObject;
 begin
   if DataSource_tbcomissoes_detail.State in [dsInsert] then
     begin
-      if DMConexao.ClientDataSet_tbcomissoes.RecordCount >= DMConexao.ClientDataSet_tbpedidosQtdParcelas_pdd.AsInteger then
+      if DMConexao.ClientDataSet_tbcomissoes.RecordCount = DMConexao.ClientDataSet_tbpedidosQtdParcelas_pdd.AsInteger then
         begin
-          showmessage('A quantidade de parcelas de comissões foi atingida.');
+          //showmessage('O total de parcelas de comissões do pedido '+DMConexao.ClientDataSet_tbcomissoesPedido_pdd.AsString + ' ' +DMConexao.ClientDataSet_tbcomissoesCodigo_for.AsString +' foi atingido.');
+          showmessage('O total de parcelas de comissões do pedido '+DMConexao.ClientDataSet_tbcomissoesPedido_pdd.AsString +' foi atingido!!');
           DMConexao.ClientDataSet_tbcomissoes.Cancel;
-        end;
+          atualizaStatusPedido('Liquidado');
+        end
     end;
 
 end;
@@ -92,6 +95,11 @@ procedure TFrmComissoes.DBEdit1KeyPress(Sender: TObject; var Key: Char);
 begin
     if not (key in ['0'..'9',#8]) then
      key:=#0;
+end;
+
+procedure TFrmComissoes.DBEdit5Change(Sender: TObject);
+begin
+  dbedit3.text := currtostr(dmconexao.ClientDataSet_tbcomissoesvalorpagto_com.AsCurrency * (dmconexao.ClientDataSet_tbcomissoesPercentcomissao_pdd.AsCurrency/100));
 end;
 
 procedure TFrmComissoes.DBEdit7KeyPress(Sender: TObject; var Key: Char);
@@ -109,6 +117,7 @@ procedure TFrmComissoes.FormCreate(Sender: TObject);
 begin
 dbedit2.Field.EditMask:='!99/99/0000;1;_';
 dbedit6.Field.EditMask:='!99/99/0000;1;_';
+//dbedit4.Field.EditMask:='R$ #,##0.00;0;_';
 end;
 
 procedure TFrmComissoes.SpeedButton2Click(Sender: TObject);
@@ -136,3 +145,4 @@ begin
 end;
 
 end.
+

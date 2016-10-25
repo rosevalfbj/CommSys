@@ -26,9 +26,9 @@ object FrmPedidos: TFrmPedidos
   object Label3: TLabel
     Left = 128
     Top = 204
-    Width = 76
+    Width = 82
     Height = 13
-    Caption = 'Qtd de Parcelas'
+    Caption = 'Total de Parcelas'
     FocusControl = DBEdit3
   end
   object Label4: TLabel

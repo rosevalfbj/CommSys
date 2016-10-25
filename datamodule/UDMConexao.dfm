@@ -248,6 +248,7 @@ object DMConexao: TDMConexao
     Top = 168
   end
   object SQLTable_tbclientes: TSQLTable
+    Active = True
     MaxBlobSize = -1
     SQLConnection = SQLConnection1
     TableName = 'tb_clientes'
@@ -402,6 +403,7 @@ object DMConexao: TDMConexao
     Top = 528
   end
   object SQLDataSet_master: TSQLDataSet
+    Active = True
     CommandText = 'select codigo_cli, nome_cli from `tb_clientes`'
     DataSource = DataSource_master
     MaxBlobSize = -1
@@ -420,6 +422,7 @@ object DMConexao: TDMConexao
     end
   end
   object SQLDataSet_detail: TSQLDataSet
+    Active = True
     CommandText = 'select * from tb_codigos'#13#10'where codigo_cli =:codigo_cli'
     DataSource = DataSource_detail
     MaxBlobSize = -1
@@ -528,8 +531,6 @@ object DMConexao: TDMConexao
     end
     object ClientDataSet_tbpedidosvalor_pdd: TFMTBCDField
       FieldName = 'valor_pdd'
-      Required = True
-      DisplayFormat = 'R$ #,##0.00;1;_'
       Precision = 10
       Size = 2
     end
@@ -552,25 +553,23 @@ object DMConexao: TDMConexao
     object ClientDataSet_tbpedidosSQLDataSet_tbcomissoes: TDataSetField
       FieldName = 'SQLDataSet_tbcomissoes'
     end
-    object ClientDataSet_tbpedidosnome_cli: TStringField
+    object ClientDataSet_tbpedidosNome_for: TStringField
       FieldKind = fkLookup
-      FieldName = 'nome_cli'
-      LookupDataSet = ClientDataSet_tbclientes
-      LookupKeyFields = 'Codigo_cli'
-      LookupResultField = 'Nome_cli'
-      KeyFields = 'Codigo_cli'
-      Required = True
-      Size = 60
-      Lookup = True
-    end
-    object ClientDataSet_tbpedidosnome_for: TStringField
-      FieldKind = fkLookup
-      FieldName = 'nome_for'
+      FieldName = 'Nome_for'
       LookupDataSet = ClientDataSet_tbfornecedores
       LookupKeyFields = 'Codigo_for'
       LookupResultField = 'Nome_for'
       KeyFields = 'Codigo_for'
-      Required = True
+      Size = 60
+      Lookup = True
+    end
+    object ClientDataSet_tbpedidosNome_cli: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Nome_cli'
+      LookupDataSet = ClientDataSet_tbclientes
+      LookupKeyFields = 'Codigo_cli'
+      LookupResultField = 'Nome_cli'
+      KeyFields = 'Codigo_cli'
       Size = 60
       Lookup = True
     end
@@ -579,6 +578,7 @@ object DMConexao: TDMConexao
     Active = True
     Aggregates = <>
     DataSetField = ClientDataSet_tbpedidosSQLDataSet_tbcomissoes
+    IndexFieldNames = 'Pedido_pdd;Codigo_for'
     Params = <>
     AfterEdit = ClientDataSet_tbcomissoesAfterEdit
     BeforePost = ClientDataSet_tbcomissoesBeforePost
@@ -586,8 +586,8 @@ object DMConexao: TDMConexao
     AfterCancel = ClientDataSet_tbcomissoesAfterCancel
     AfterDelete = ClientDataSet_tbcomissoesAfterDelete
     AfterRefresh = ClientDataSet_tbcomissoesAfterRefresh
-    Left = 456
-    Top = 312
+    Left = 472
+    Top = 376
     object ClientDataSet_tbcomissoesStatus_com: TStringField
       FieldName = 'Status_com'
       Required = True
@@ -598,6 +598,7 @@ object DMConexao: TDMConexao
     end
     object ClientDataSet_tbcomissoesDataemissao_com: TDateField
       FieldName = 'Dataemissao_com'
+      Required = True
     end
     object ClientDataSet_tbcomissoesvalorcomissao_com: TFMTBCDField
       FieldName = 'valorcomissao_com'
@@ -609,7 +610,6 @@ object DMConexao: TDMConexao
     object ClientDataSet_tbcomissoesvalorpagto_com: TFMTBCDField
       FieldName = 'valorpagto_com'
       Required = True
-      DisplayFormat = 'R$ #,##0.00;0;_'
       currency = True
       Precision = 10
       Size = 2
@@ -641,13 +641,14 @@ object DMConexao: TDMConexao
   end
   object DataSetProvider_tbcomissoes: TDataSetProvider
     DataSet = SQLDataSet_tbcomissoes
-    Left = 288
-    Top = 312
+    Left = 304
+    Top = 376
   end
   object SQLDataSet_tbcomissoes: TSQLDataSet
+    Active = True
     CommandText = 
-      'select * from `tb_comissoes`'#13#10'where pedido_pdd =:pedido_pdd and ' +
-      'codigo_for =:codigo_for'
+      'select * from tb_comissoes'#13#10'where pedido_pdd=:pedido_pdd and cod' +
+      'igo_for=:codigo_for'
     DataSource = DataSource_tbcomissoes_detail
     MaxBlobSize = -1
     Params = <
@@ -662,8 +663,8 @@ object DMConexao: TDMConexao
         ParamType = ptInput
       end>
     SQLConnection = SQLConnection1
-    Left = 144
-    Top = 312
+    Left = 160
+    Top = 376
     object SQLDataSet_tbcomissoesStatus_com: TStringField
       FieldName = 'Status_com'
       Required = True
@@ -712,54 +713,12 @@ object DMConexao: TDMConexao
   end
   object DataSource_tbcomissoes_detail: TDataSource
     DataSet = SQLDataSet_tbpedidos
-    Left = 16
-    Top = 314
+    Left = 32
+    Top = 378
   end
   object DataSource_tbpedidos_master: TDataSource
     Left = 32
     Top = 264
-  end
-  object SQLDataSet_tbpedidos: TSQLDataSet
-    CommandText = 'select * from `tb_pedidos`'
-    DataSource = DataSource_tbpedidos_master
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = SQLConnection1
-    Left = 144
-    Top = 264
-    object SQLDataSet_tbpedidosPedido_pdd: TLargeintField
-      FieldName = 'Pedido_pdd'
-      Required = True
-    end
-    object SQLDataSet_tbpedidosQtdParcelas_pdd: TIntegerField
-      FieldName = 'QtdParcelas_pdd'
-      Required = True
-    end
-    object SQLDataSet_tbpedidosDatavenda_pdd: TDateField
-      FieldName = 'Datavenda_pdd'
-      Required = True
-    end
-    object SQLDataSet_tbpedidosvalor_pdd: TFMTBCDField
-      FieldName = 'valor_pdd'
-      Precision = 10
-      Size = 2
-    end
-    object SQLDataSet_tbpedidosStatus_pdd: TStringField
-      FieldName = 'Status_pdd'
-      Required = True
-    end
-    object SQLDataSet_tbpedidosCodigo_vdd: TIntegerField
-      FieldName = 'Codigo_vdd'
-      Required = True
-    end
-    object SQLDataSet_tbpedidosCodigo_cli: TIntegerField
-      FieldName = 'Codigo_cli'
-      Required = True
-    end
-    object SQLDataSet_tbpedidosCodigo_for: TIntegerField
-      FieldName = 'Codigo_for'
-      Required = True
-    end
   end
   object ClientDataSet_comissoes: TClientDataSet
     Active = True
@@ -772,7 +731,7 @@ object DMConexao: TDMConexao
       end>
     ProviderName = 'DataSetProvider_comissoes'
     Left = 456
-    Top = 384
+    Top = 432
     object ClientDataSet_comissoesPedido_pdd: TLargeintField
       FieldName = 'Pedido_pdd'
       Required = True
@@ -795,6 +754,7 @@ object DMConexao: TDMConexao
       FieldName = 'Valorcomissao_com'
       Required = True
       DisplayFormat = 'R$ #,##0.00;0;_'
+      currency = True
       Precision = 10
       Size = 2
     end
@@ -802,6 +762,7 @@ object DMConexao: TDMConexao
       FieldName = 'Valorpagto_com'
       Required = True
       DisplayFormat = 'R$ #,##0.00;0;_'
+      currency = True
       Precision = 10
       Size = 2
     end
@@ -817,11 +778,11 @@ object DMConexao: TDMConexao
   object DataSetProvider_comissoes: TDataSetProvider
     DataSet = SQLQuery_comissoes
     Left = 288
-    Top = 384
+    Top = 432
   end
   object DataSource_comissoes: TDataSource
     Left = 32
-    Top = 384
+    Top = 432
   end
   object SQLQuery_comissoes: TSQLQuery
     DataSource = DataSource_comissoes
@@ -846,7 +807,7 @@ object DMConexao: TDMConexao
       'order by tc.pedido_pdd, tc.codigo_for, tc.parcelapaga_com')
     SQLConnection = SQLConnection1
     Left = 144
-    Top = 384
+    Top = 432
     object SQLQuery_comissoesPedido_pdd: TLargeintField
       FieldName = 'Pedido_pdd'
       Required = True
@@ -881,6 +842,140 @@ object DMConexao: TDMConexao
     end
     object SQLQuery_comissoesdatavenda_pdd: TDateField
       FieldName = 'datavenda_pdd'
+      Required = True
+    end
+  end
+  object sqlt_pedidos: TSQLTable
+    Active = True
+    MaxBlobSize = -1
+    SQLConnection = SQLConnection1
+    TableName = 'tb_pedidos'
+    Left = 144
+    Top = 312
+    object sqlt_pedidosPedido_pdd: TLargeintField
+      FieldName = 'Pedido_pdd'
+      Required = True
+    end
+    object sqlt_pedidosQtdParcelas_pdd: TIntegerField
+      FieldName = 'QtdParcelas_pdd'
+      Required = True
+    end
+    object sqlt_pedidosDatavenda_pdd: TDateField
+      FieldName = 'Datavenda_pdd'
+      Required = True
+    end
+    object sqlt_pedidosvalor_pdd: TFMTBCDField
+      FieldName = 'valor_pdd'
+      Precision = 10
+      Size = 2
+    end
+    object sqlt_pedidosStatus_pdd: TStringField
+      FieldName = 'Status_pdd'
+      Required = True
+    end
+    object sqlt_pedidosCodigo_vdd: TIntegerField
+      FieldName = 'Codigo_vdd'
+      Required = True
+    end
+    object sqlt_pedidosCodigo_cli: TIntegerField
+      FieldName = 'Codigo_cli'
+      Required = True
+    end
+    object sqlt_pedidosCodigo_for: TIntegerField
+      FieldName = 'Codigo_for'
+      Required = True
+    end
+  end
+  object dsPedidos: TDataSource
+    Left = 32
+    Top = 320
+  end
+  object dsp_pedidos: TDataSetProvider
+    DataSet = sqlt_pedidos
+    Left = 280
+    Top = 312
+  end
+  object cds_pedidos: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dsp_pedidos'
+    Left = 424
+    Top = 312
+    object cds_pedidosPedido_pdd: TLargeintField
+      FieldName = 'Pedido_pdd'
+      Required = True
+    end
+    object cds_pedidosQtdParcelas_pdd: TIntegerField
+      FieldName = 'QtdParcelas_pdd'
+      Required = True
+    end
+    object cds_pedidosDatavenda_pdd: TDateField
+      FieldName = 'Datavenda_pdd'
+      Required = True
+    end
+    object cds_pedidosvalor_pdd: TFMTBCDField
+      FieldName = 'valor_pdd'
+      Precision = 10
+      Size = 2
+    end
+    object cds_pedidosStatus_pdd: TStringField
+      FieldName = 'Status_pdd'
+      Required = True
+    end
+    object cds_pedidosCodigo_vdd: TIntegerField
+      FieldName = 'Codigo_vdd'
+      Required = True
+    end
+    object cds_pedidosCodigo_cli: TIntegerField
+      FieldName = 'Codigo_cli'
+      Required = True
+    end
+    object cds_pedidosCodigo_for: TIntegerField
+      FieldName = 'Codigo_for'
+      Required = True
+    end
+  end
+  object SQLDataSet_tbpedidos: TSQLDataSet
+    Active = True
+    CommandText = 'select * from tb_pedidos'
+    DataSource = DataSource_tbpedidos_master
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConnection1
+    Left = 152
+    Top = 264
+    object SQLDataSet_tbpedidosPedido_pdd: TLargeintField
+      FieldName = 'Pedido_pdd'
+      Required = True
+    end
+    object SQLDataSet_tbpedidosQtdParcelas_pdd: TIntegerField
+      FieldName = 'QtdParcelas_pdd'
+      Required = True
+    end
+    object SQLDataSet_tbpedidosDatavenda_pdd: TDateField
+      FieldName = 'Datavenda_pdd'
+      Required = True
+    end
+    object SQLDataSet_tbpedidosvalor_pdd: TFMTBCDField
+      FieldName = 'valor_pdd'
+      Precision = 10
+      Size = 2
+    end
+    object SQLDataSet_tbpedidosStatus_pdd: TStringField
+      FieldName = 'Status_pdd'
+      Required = True
+    end
+    object SQLDataSet_tbpedidosCodigo_vdd: TIntegerField
+      FieldName = 'Codigo_vdd'
+      Required = True
+    end
+    object SQLDataSet_tbpedidosCodigo_cli: TIntegerField
+      FieldName = 'Codigo_cli'
+      Required = True
+    end
+    object SQLDataSet_tbpedidosCodigo_for: TIntegerField
+      FieldName = 'Codigo_for'
       Required = True
     end
   end

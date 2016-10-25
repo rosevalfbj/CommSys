@@ -93,39 +93,10 @@ type
     SQLDataSet_tbcomissoes: TSQLDataSet;
     DataSource_tbcomissoes_detail: TDataSource;
     DataSource_tbpedidos_master: TDataSource;
-    SQLDataSet_tbpedidos: TSQLDataSet;
     ClientDataSet_comissoes: TClientDataSet;
     DataSetProvider_comissoes: TDataSetProvider;
     DataSource_comissoes: TDataSource;
     SQLQuery_comissoes: TSQLQuery;
-    SQLDataSet_tbpedidosPedido_pdd: TLargeintField;
-    SQLDataSet_tbpedidosQtdParcelas_pdd: TIntegerField;
-    SQLDataSet_tbpedidosDatavenda_pdd: TDateField;
-    SQLDataSet_tbpedidosvalor_pdd: TFMTBCDField;
-    SQLDataSet_tbpedidosStatus_pdd: TStringField;
-    SQLDataSet_tbpedidosCodigo_vdd: TIntegerField;
-    SQLDataSet_tbpedidosCodigo_cli: TIntegerField;
-    SQLDataSet_tbpedidosCodigo_for: TIntegerField;
-    SQLDataSet_tbcomissoesStatus_com: TStringField;
-    SQLDataSet_tbcomissoesNotafiscal_com: TIntegerField;
-    SQLDataSet_tbcomissoesDataemissao_com: TDateField;
-    SQLDataSet_tbcomissoesvalorcomissao_com: TFMTBCDField;
-    SQLDataSet_tbcomissoesvalorpagto_com: TFMTBCDField;
-    SQLDataSet_tbcomissoesPagaem_pdd: TDateField;
-    SQLDataSet_tbcomissoesPercentcomissao_pdd: TIntegerField;
-    SQLDataSet_tbcomissoesObservacao_com: TStringField;
-    SQLDataSet_tbcomissoesPedido_pdd: TLargeintField;
-    SQLDataSet_tbcomissoesParcelapaga_com: TIntegerField;
-    SQLDataSet_tbcomissoesCodigo_for: TIntegerField;
-    ClientDataSet_tbpedidosPedido_pdd: TLargeintField;
-    ClientDataSet_tbpedidosQtdParcelas_pdd: TIntegerField;
-    ClientDataSet_tbpedidosDatavenda_pdd: TDateField;
-    ClientDataSet_tbpedidosvalor_pdd: TFMTBCDField;
-    ClientDataSet_tbpedidosStatus_pdd: TStringField;
-    ClientDataSet_tbpedidosCodigo_vdd: TIntegerField;
-    ClientDataSet_tbpedidosCodigo_cli: TIntegerField;
-    ClientDataSet_tbpedidosCodigo_for: TIntegerField;
-    ClientDataSet_tbpedidosSQLDataSet_tbcomissoes: TDataSetField;
     SQLQuery_comissoesPedido_pdd: TLargeintField;
     SQLQuery_comissoesParcelapaga_com: TIntegerField;
     SQLQuery_comissoesNome_cli: TStringField;
@@ -149,12 +120,61 @@ type
     ClientDataSet_tbcomissoesPedido_pdd: TLargeintField;
     ClientDataSet_tbcomissoesParcelapaga_com: TIntegerField;
     ClientDataSet_tbcomissoesCodigo_for: TIntegerField;
-    ClientDataSet_tbpedidosnome_cli: TStringField;
-    ClientDataSet_tbpedidosnome_for: TStringField;
     SQLQuery_comissoesstatus_pdd: TStringField;
     ClientDataSet_comissoesstatus_pdd: TStringField;
     SQLQuery_comissoesdatavenda_pdd: TDateField;
     ClientDataSet_comissoesdatavenda_pdd: TDateField;
+    SQLDataSet_tbcomissoesStatus_com: TStringField;
+    SQLDataSet_tbcomissoesNotafiscal_com: TIntegerField;
+    SQLDataSet_tbcomissoesDataemissao_com: TDateField;
+    SQLDataSet_tbcomissoesvalorcomissao_com: TFMTBCDField;
+    SQLDataSet_tbcomissoesvalorpagto_com: TFMTBCDField;
+    SQLDataSet_tbcomissoesPagaem_pdd: TDateField;
+    SQLDataSet_tbcomissoesPercentcomissao_pdd: TIntegerField;
+    SQLDataSet_tbcomissoesObservacao_com: TStringField;
+    SQLDataSet_tbcomissoesPedido_pdd: TLargeintField;
+    SQLDataSet_tbcomissoesParcelapaga_com: TIntegerField;
+    SQLDataSet_tbcomissoesCodigo_for: TIntegerField;
+    sqlt_pedidos: TSQLTable;
+    dsPedidos: TDataSource;
+    dsp_pedidos: TDataSetProvider;
+    cds_pedidos: TClientDataSet;
+    sqlt_pedidosPedido_pdd: TLargeintField;
+    sqlt_pedidosQtdParcelas_pdd: TIntegerField;
+    sqlt_pedidosDatavenda_pdd: TDateField;
+    sqlt_pedidosvalor_pdd: TFMTBCDField;
+    sqlt_pedidosStatus_pdd: TStringField;
+    sqlt_pedidosCodigo_vdd: TIntegerField;
+    sqlt_pedidosCodigo_cli: TIntegerField;
+    sqlt_pedidosCodigo_for: TIntegerField;
+    cds_pedidosPedido_pdd: TLargeintField;
+    cds_pedidosQtdParcelas_pdd: TIntegerField;
+    cds_pedidosDatavenda_pdd: TDateField;
+    cds_pedidosvalor_pdd: TFMTBCDField;
+    cds_pedidosStatus_pdd: TStringField;
+    cds_pedidosCodigo_vdd: TIntegerField;
+    cds_pedidosCodigo_cli: TIntegerField;
+    cds_pedidosCodigo_for: TIntegerField;
+    SQLDataSet_tbpedidos: TSQLDataSet;
+    SQLDataSet_tbpedidosPedido_pdd: TLargeintField;
+    SQLDataSet_tbpedidosQtdParcelas_pdd: TIntegerField;
+    SQLDataSet_tbpedidosDatavenda_pdd: TDateField;
+    SQLDataSet_tbpedidosvalor_pdd: TFMTBCDField;
+    SQLDataSet_tbpedidosStatus_pdd: TStringField;
+    SQLDataSet_tbpedidosCodigo_vdd: TIntegerField;
+    SQLDataSet_tbpedidosCodigo_cli: TIntegerField;
+    SQLDataSet_tbpedidosCodigo_for: TIntegerField;
+    ClientDataSet_tbpedidosPedido_pdd: TLargeintField;
+    ClientDataSet_tbpedidosQtdParcelas_pdd: TIntegerField;
+    ClientDataSet_tbpedidosDatavenda_pdd: TDateField;
+    ClientDataSet_tbpedidosvalor_pdd: TFMTBCDField;
+    ClientDataSet_tbpedidosStatus_pdd: TStringField;
+    ClientDataSet_tbpedidosCodigo_vdd: TIntegerField;
+    ClientDataSet_tbpedidosCodigo_cli: TIntegerField;
+    ClientDataSet_tbpedidosCodigo_for: TIntegerField;
+    ClientDataSet_tbpedidosSQLDataSet_tbcomissoes: TDataSetField;
+    ClientDataSet_tbpedidosNome_for: TStringField;
+    ClientDataSet_tbpedidosNome_cli: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure ClientDataSet_tbcidadesAfterCancel(DataSet: TDataSet);
     procedure ClientDataSet_tbcidadesAfterDelete(DataSet: TDataSet);
@@ -476,6 +496,14 @@ procedure TDMConexao.ClientDataSet_tbcomissoesAfterDelete(DataSet: TDataSet);
 begin
   try
     ClientDataSet_tbcomissoes.ApplyUpdates(-1);
+    try
+     if DMConexao.ClientDataSet_tbcomissoes.RecordCount = DMConexao.ClientDataSet_tbpedidosQtdParcelas_pdd.AsInteger then
+       begin
+         atualizaStatusPedido('Liquidado');
+       end
+     else atualizaStatusPedido('Aberto');
+      except
+      end;
   finally
     ClientDataSet_tbcomissoes.Cancel;
   end;
@@ -506,10 +534,16 @@ procedure TDMConexao.ClientDataSet_tbcomissoesAfterPost(DataSet: TDataSet);
 begin
   try
     ClientDataSet_tbcomissoes.ApplyUpdates(-1);
+      try
+        if DMConexao.ClientDataSet_tbcomissoes.RecordCount = DMConexao.ClientDataSet_tbpedidosQtdParcelas_pdd.AsInteger then
+          begin
+            atualizaStatusPedido('Liquidado');
+          end
+      except
+      end;
   finally
     ClientDataSet_tbcomissoes.Cancel;
   end;
-
 end;
 
 procedure TDMConexao.ClientDataSet_tbcomissoesAfterRefresh(DataSet: TDataSet);
@@ -524,6 +558,7 @@ end;
 
 procedure TDMConexao.ClientDataSet_tbcomissoesBeforePost(DataSet: TDataSet);
 begin
+  dmconexao.ClientDataSet_tbcomissoesvalorcomissao_com.AsCurrency := dmconexao.ClientDataSet_tbcomissoesvalorpagto_com.AsCurrency * (dmconexao.ClientDataSet_tbcomissoesPercentcomissao_pdd.AsCurrency/100);
 if (FrmComissoes.CheckFields(Dataset) = False) then
   begin
     Abort;
@@ -631,7 +666,6 @@ begin
   finally
     ClientDataSet_tbpedidos.Cancel;
   end;
-
 end;
 
 procedure TDMConexao.ClientDataSet_tbpedidosAfterRefresh(DataSet: TDataSet);
@@ -673,6 +707,7 @@ begin
 
   SQLDataSet_tbpedidos.Open;
   ClientDataSet_tbpedidos.Open;
+  cds_pedidos.Open;
 
   SQLDataSet_tbcomissoes.Open;
   ClientDataSet_tbcomissoes.Open;

@@ -90,14 +90,14 @@ object FrmComissoes: TFrmComissoes
       end
       item
         Expanded = False
-        FieldName = 'nome_cli'
+        FieldName = 'Nome_cli'
         Title.Caption = 'Cliente'
         Width = 120
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'nome_for'
+        FieldName = 'Nome_for'
         Title.Caption = 'Representada'
         Width = 109
         Visible = True
@@ -119,6 +119,7 @@ object FrmComissoes: TFrmComissoes
         Expanded = False
         FieldName = 'QtdParcelas_pdd'
         Title.Caption = 'Total de Parcelas'
+        Width = 64
         Visible = True
       end>
   end
@@ -172,9 +173,9 @@ object FrmComissoes: TFrmComissoes
     object Label8: TLabel
       Left = 95
       Top = 61
-      Width = 70
+      Width = 55
       Height = 13
-      Caption = 'Nro da Parcela'
+      Caption = 'Parcela Nro'
     end
     object Label9: TLabel
       Left = 328
@@ -233,6 +234,7 @@ object FrmComissoes: TFrmComissoes
       DataField = 'Percentcomissao_pdd'
       DataSource = DataSource_tbcomissoes_detail
       TabOrder = 3
+      OnChange = DBEdit5Change
     end
     object DBEdit3: TDBEdit
       Left = 384
@@ -241,6 +243,7 @@ object FrmComissoes: TFrmComissoes
       Height = 21
       DataField = 'Valorcomissao_com'
       DataSource = DataSource_tbcomissoes_detail
+      ReadOnly = True
       TabOrder = 4
     end
     object DBEdit6: TDBEdit
@@ -316,7 +319,7 @@ object FrmComissoes: TFrmComissoes
         item
           Expanded = False
           FieldName = 'Parcelapaga_com'
-          Title.Caption = 'Nro da Parcela'
+          Title.Caption = 'Parcela Nro'
           Visible = True
         end
         item

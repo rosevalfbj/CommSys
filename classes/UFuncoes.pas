@@ -9,10 +9,12 @@ uses
   procedure AutoInc(cds: TClientDataSet;field:String);
   function verificaQtdDeParcelasPedido(cds: TClientDataSet;edit: TEdit):boolean;
   procedure populaCombobox(sqlt: TSQLTable;field: TField; combobox: Tcombobox);
+  procedure atualizaStatusPedido(status:String);
   function calcComissao_sqlq(sqlq: TSQLQuery;field: TField):currency;
   function calcComissao_sqlt(sqlt: TSQLTable;field: TField):currency;
 
 implementation
+  uses UDMConexao;
 
 procedure AutoInc(cds: TClientDataSet;field:String);
 var
@@ -91,5 +93,15 @@ begin
     sqlt.First;
   calcComissao_sqlt:=val;
 end;
+
+procedure atualizaStatusPedido(status:String);
+  begin
+    DMconexao.cds_pedidos.Locate('pedido_pdd;codigo_for',VarArrayOf([DMConexao.ClientDataSet_tbcomissoesPedido_pdd.AsString,DMConexao.ClientDataSet_tbcomissoesCodigo_for.AsString]),[]);
+    DMconexao.cds_pedidos.Edit;
+    DMconexao.cds_pedidosStatus_pdd.AsString:=status;
+    DMConexao.cds_pedidos.ApplyUpdates(-1);
+    DMConexao.ClientDataSet_tbpedidos.Close;
+    DMConexao.ClientDataSet_tbpedidos.Open;
+  end;
 
 end.
