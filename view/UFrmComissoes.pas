@@ -37,10 +37,9 @@ type
     Label9: TLabel;
     Label4: TLabel;
     DataSource_tbpedido_master: TDataSource;
-    Label10: TLabel;
-    Edit2: TEdit;
-    Label11: TLabel;
     DBComboBox1: TDBComboBox;
+    Label10: TLabel;
+    edtTotalComissoes: TEdit;
     procedure SpeedButton2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BtnBuscarClick(Sender: TObject);
@@ -59,7 +58,6 @@ type
 
 var
   FrmComissoes: TFrmComissoes;
-
 implementation
  Uses UDMConexao,UFuncoes;
 
@@ -88,7 +86,6 @@ begin
           atualizaStatusPedido('Liquidado');
         end
     end;
-
 end;
 
 procedure TFrmComissoes.DBEdit1KeyPress(Sender: TObject; var Key: Char);

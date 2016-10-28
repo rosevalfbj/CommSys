@@ -645,7 +645,6 @@ object DMConexao: TDMConexao
     Top = 376
   end
   object SQLDataSet_tbcomissoes: TSQLDataSet
-    Active = True
     CommandText = 
       'select * from tb_comissoes'#13#10'where pedido_pdd=:pedido_pdd and cod' +
       'igo_for=:codigo_for'

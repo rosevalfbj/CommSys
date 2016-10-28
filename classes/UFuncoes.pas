@@ -96,12 +96,11 @@ end;
 
 procedure atualizaStatusPedido(status:String);
   begin
-    DMconexao.cds_pedidos.Locate('pedido_pdd;codigo_for',VarArrayOf([DMConexao.ClientDataSet_tbcomissoesPedido_pdd.AsString,DMConexao.ClientDataSet_tbcomissoesCodigo_for.AsString]),[]);
+    DMconexao.cds_pedidos.Locate('pedido_pdd;codigo_for',VarArrayOf([DMConexao.ClientDataSet_tbpedidosPedido_pdd.AsString,DMConexao.ClientDataSet_tbpedidosCodigo_for.AsString]),[]);
     DMconexao.cds_pedidos.Edit;
     DMconexao.cds_pedidosStatus_pdd.AsString:=status;
     DMConexao.cds_pedidos.ApplyUpdates(-1);
-    DMConexao.ClientDataSet_tbpedidos.Close;
-    DMConexao.ClientDataSet_tbpedidos.Open;
+    DMConexao.cds_pedidos.RefreshRecord;
   end;
 
 end.

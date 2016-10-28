@@ -119,7 +119,6 @@ object FrmComissoes: TFrmComissoes
         Expanded = False
         FieldName = 'QtdParcelas_pdd'
         Title.Caption = 'Total de Parcelas'
-        Width = 64
         Visible = True
       end>
   end
@@ -139,7 +138,7 @@ object FrmComissoes: TFrmComissoes
       FocusControl = DBEdit1
     end
     object Label3: TLabel
-      Left = 96
+      Left = 106
       Top = 13
       Width = 79
       Height = 13
@@ -147,7 +146,7 @@ object FrmComissoes: TFrmComissoes
       FocusControl = DBEdit2
     end
     object Label5: TLabel
-      Left = 190
+      Left = 220
       Top = 13
       Width = 70
       Height = 13
@@ -155,7 +154,7 @@ object FrmComissoes: TFrmComissoes
       FocusControl = DBEdit4
     end
     object Label6: TLabel
-      Left = 296
+      Left = 335
       Top = 13
       Width = 74
       Height = 13
@@ -164,35 +163,35 @@ object FrmComissoes: TFrmComissoes
     end
     object Label7: TLabel
       Left = 8
-      Top = 64
+      Top = 61
       Width = 69
       Height = 13
       Caption = 'Data do Pagto'
       FocusControl = DBEdit6
     end
     object Label8: TLabel
-      Left = 95
+      Left = 106
       Top = 61
       Width = 55
       Height = 13
       Caption = 'Parcela Nro'
     end
     object Label9: TLabel
-      Left = 328
+      Left = 335
       Top = 61
       Width = 58
       Height = 13
       Caption = 'Observa'#231#227'o'
     end
     object Label4: TLabel
-      Left = 384
-      Top = 16
-      Width = 87
+      Left = 445
+      Top = 13
+      Width = 92
       Height = 13
       Caption = 'Valor da Comiss'#227'o'
     end
     object Label10: TLabel
-      Left = 190
+      Left = 220
       Top = 61
       Width = 31
       Height = 13
@@ -209,7 +208,7 @@ object FrmComissoes: TFrmComissoes
       OnKeyPress = DBEdit1KeyPress
     end
     object DBEdit2: TDBEdit
-      Left = 96
+      Left = 106
       Top = 32
       Width = 83
       Height = 21
@@ -218,7 +217,7 @@ object FrmComissoes: TFrmComissoes
       TabOrder = 1
     end
     object DBEdit4: TDBEdit
-      Left = 190
+      Left = 220
       Top = 32
       Width = 91
       Height = 21
@@ -227,7 +226,7 @@ object FrmComissoes: TFrmComissoes
       TabOrder = 2
     end
     object DBEdit5: TDBEdit
-      Left = 296
+      Left = 338
       Top = 32
       Width = 74
       Height = 21
@@ -237,8 +236,8 @@ object FrmComissoes: TFrmComissoes
       OnChange = DBEdit5Change
     end
     object DBEdit3: TDBEdit
-      Left = 384
-      Top = 35
+      Left = 445
+      Top = 32
       Width = 92
       Height = 21
       DataField = 'Valorcomissao_com'
@@ -256,7 +255,7 @@ object FrmComissoes: TFrmComissoes
       TabOrder = 5
     end
     object DBEdit7: TDBEdit
-      Left = 95
+      Left = 106
       Top = 80
       Width = 80
       Height = 21
@@ -266,9 +265,9 @@ object FrmComissoes: TFrmComissoes
       OnKeyPress = DBEdit7KeyPress
     end
     object DBEdit8: TDBEdit
-      Left = 328
+      Left = 335
       Top = 80
-      Width = 209
+      Width = 202
       Height = 21
       DataField = 'Observacao_com'
       DataSource = DataSource_tbcomissoes_detail
@@ -276,16 +275,14 @@ object FrmComissoes: TFrmComissoes
       OnKeyPress = DBEdit8KeyPress
     end
     object DBComboBox1: TDBComboBox
-      Left = 190
+      Left = 220
       Top = 80
-      Width = 113
+      Width = 91
       Height = 21
       DataField = 'Status_com'
       DataSource = DataSource_tbcomissoes_detail
       Items.Strings = (
-        'Liquidado'
-        'Pendente'
-        'Em aberto')
+        'MANUAL')
       TabOrder = 8
     end
   end
@@ -296,13 +293,6 @@ object FrmComissoes: TFrmComissoes
     Height = 242
     BevelInner = bvLowered
     TabOrder = 5
-    object Label11: TLabel
-      Left = 296
-      Top = 215
-      Width = 114
-      Height = 13
-      Caption = 'Valor Total da Comiss'#227'o'
-    end
     object DBGrid2: TDBGrid
       Left = 8
       Top = 8
@@ -347,12 +337,14 @@ object FrmComissoes: TFrmComissoes
           Visible = True
         end>
     end
-    object Edit2: TEdit
+    object edtTotalComissoes: TEdit
       Left = 416
       Top = 215
       Width = 121
       Height = 21
+      ReadOnly = True
       TabOrder = 1
+      Text = '0'
     end
   end
   object DBNavigator2: TDBNavigator
