@@ -37,8 +37,6 @@ type
     Label9: TLabel;
     Label4: TLabel;
     DataSource_tbpedido_master: TDataSource;
-    DBComboBox1: TDBComboBox;
-    Label10: TLabel;
     edtTotalComissoes: TEdit;
     procedure SpeedButton2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);

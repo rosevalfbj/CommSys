@@ -177,7 +177,7 @@ object FrmComissoes: TFrmComissoes
       Caption = 'Parcela Nro'
     end
     object Label9: TLabel
-      Left = 335
+      Left = 220
       Top = 61
       Width = 58
       Height = 13
@@ -186,16 +186,9 @@ object FrmComissoes: TFrmComissoes
     object Label4: TLabel
       Left = 445
       Top = 13
-      Width = 92
+      Width = 87
       Height = 13
       Caption = 'Valor da Comiss'#227'o'
-    end
-    object Label10: TLabel
-      Left = 220
-      Top = 61
-      Width = 31
-      Height = 13
-      Caption = 'Status'
     end
     object DBEdit1: TDBEdit
       Left = 8
@@ -265,25 +258,14 @@ object FrmComissoes: TFrmComissoes
       OnKeyPress = DBEdit7KeyPress
     end
     object DBEdit8: TDBEdit
-      Left = 335
+      Left = 220
       Top = 80
-      Width = 202
+      Width = 317
       Height = 21
       DataField = 'Observacao_com'
       DataSource = DataSource_tbcomissoes_detail
       TabOrder = 7
       OnKeyPress = DBEdit8KeyPress
-    end
-    object DBComboBox1: TDBComboBox
-      Left = 220
-      Top = 80
-      Width = 91
-      Height = 21
-      DataField = 'Status_com'
-      DataSource = DataSource_tbcomissoes_detail
-      Items.Strings = (
-        'MANUAL')
-      TabOrder = 8
     end
   end
   object Panel2: TPanel

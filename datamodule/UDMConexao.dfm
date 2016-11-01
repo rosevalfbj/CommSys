@@ -590,7 +590,6 @@ object DMConexao: TDMConexao
     Top = 376
     object ClientDataSet_tbcomissoesStatus_com: TStringField
       FieldName = 'Status_com'
-      Required = True
     end
     object ClientDataSet_tbcomissoesNotafiscal_com: TIntegerField
       FieldName = 'Notafiscal_com'
